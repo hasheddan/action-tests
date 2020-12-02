@@ -29,14 +29,8 @@ jobs:
       - name: Build xpkg
         uses: hasheddan/action-tests@master
         with:
-          command: build
-          type: configuration
-          path: nested
-          destination: --name=xpkg-action-test
+          command: build configuration -f nested/nested.yaml --name=xpkg-action-test
       - name: Push xpkg
         uses: hasheddan/action-tests@master
         with:
-          command: push
-          type: configuration
-          path: nested/xpkg-action-test.xpkg
-          destination: registry.upbound.io/crossplane-test/xpkg-action-test:v0.0.1
+          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/hasheddan/xpkg-action-test:v0.0.1
