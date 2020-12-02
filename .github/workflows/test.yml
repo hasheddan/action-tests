@@ -36,4 +36,4 @@ jobs:
       - name: Push xpkg
         uses: crossplane-contrib/xpkg-action@master
         with:
-          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test:${{ steps.tagger.outputs.VERSION_TAG }}
+          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test
