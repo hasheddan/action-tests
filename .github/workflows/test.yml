@@ -33,4 +33,4 @@ jobs:
       - name: Push xpkg
         uses: hasheddan/action-tests@master
         with:
-          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/hasheddan/xpkg-action-test:v0.0.1
+          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test:v0.0.1
