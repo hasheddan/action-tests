@@ -29,5 +29,5 @@ jobs:
         with:
           command: push
           type: configuration
-          path: nested/xpkg-action-text.xpkg
+          path: nested/xpkg-action-test.xpkg
           destination: registry.upbound.io/crossplane-test/xpkg-action-test:v0.0.1
