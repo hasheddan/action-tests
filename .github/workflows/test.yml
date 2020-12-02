@@ -27,13 +27,13 @@ jobs:
       - name: stat
         run: ls $HOME/.docker/
       - name: Set tag
-        run: echo '::set-output name=VERSION_TAG::$(shell git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )'
+        run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
         id: tagger
       - name: Build xpkg
-        uses: hasheddan/action-tests@master
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: build configuration -f nested --name=xpkg-action-test
       - name: Push xpkg
-        uses: hasheddan/action-tests@master
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test:${{ steps.tagger.outputs.VERSION_TAG }}
