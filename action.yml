@@ -1,0 +1,5 @@
+name: action-test
+description: Test github actions.
+runs:
+  using: docker
+  image: Dockerfile
