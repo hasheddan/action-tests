@@ -24,3 +24,10 @@ jobs:
           type: configuration
           path: nested
           destination: --name=xpkg-action-test
+      - name: Push xpkg
+        uses: hasheddan/action-tests@master
+        with:
+          command: push
+          type: configuration
+          path: nested/xpkg-action-text.xpkg
+          destination: registry.upbound.io/crossplane-test/xpkg-action-test:v0.0.1
