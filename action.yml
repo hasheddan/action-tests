@@ -11,7 +11,7 @@ runs:
       shell: bash
     - run: ls -la
       shell: bash
-    - run: tree
+    - run: pwd
       shell: bash
     - run: "./kubectl-crossplane ${{ inputs.command }}"
       shell: bash
