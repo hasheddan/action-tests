@@ -19,3 +19,10 @@ jobs:
           submodules: true
       - name: Tree
         uses: hasheddan/action-tests@master
+      - name: Build xpkg
+        uses: crossplane-contrib/xpkg-action@master
+        with:
+          command: build
+          type: configuration
+          path: nested/nested.yaml
+          destination: --name=xpkg-action-test
