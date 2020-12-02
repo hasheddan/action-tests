@@ -17,10 +17,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Tree
-        uses: hasheddan/action-tests@master
       - name: Build xpkg
-        uses: crossplane-contrib/xpkg-action@master
+        uses: hasheddan/action-tests@master
         with:
           command: build
           type: configuration
