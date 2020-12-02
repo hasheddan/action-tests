@@ -22,4 +22,5 @@ jobs:
         with:
           command: build
           type: configuration
+          path: nested
           destination: --name=xpkg-action-test
