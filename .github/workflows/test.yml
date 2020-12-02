@@ -22,5 +22,4 @@ jobs:
         with:
           command: build
           type: configuration
-          path: nested/nested.yaml
           destination: --name=xpkg-action-test
