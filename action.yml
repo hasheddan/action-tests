@@ -9,7 +9,5 @@ runs:
   steps: 
     - run: curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
       shell: bash
-    - run: mv kubectl-crossplane /usr/local/bin/
-      shell: bash
-    - run: "kubectl-crossplane ${{ inputs.command }}"
+    - run: "./kubectl-crossplane ${{ inputs.command }}"
       shell: bash
