@@ -24,16 +24,18 @@ jobs:
           registry: registry.upbound.io
           username: ${{ secrets.DOCKER_USR }}
           password: ${{ secrets.DOCKER_PSW }}
-      - name: stat
-        run: ls $HOME/.docker/
       - name: Set tag
         run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
         id: tagger
-      - name: Build xpkg
-        uses: crossplane-contrib/xpkg-action@master
+      - name: Build
+        uses: crossplane-contrib/xpkg-action@v0.1.0
         with:
           command: build configuration -f nested --name=xpkg-action-test
-      - name: Push xpkg
-        uses: crossplane-contrib/xpkg-action@master
+      - name: Push
+        uses: crossplane-contrib/xpkg-action@v0.1.0
+        with:
+          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test:${{ steps.tagger.outputs.VERSION_TAG }}
+      - name: Push Latest
+        uses: crossplane-contrib/xpkg-action@v0.1.0
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test
