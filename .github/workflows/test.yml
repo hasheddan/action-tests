@@ -40,3 +40,33 @@ jobs:
         uses: crossplane-contrib/xpkg-action@v0.1.0
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test
+  test2:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Login to Docker
+        uses: docker/login-action@v1
+        if: env.DOCKER_USR != ''
+        with:
+          registry: registry.upbound.io
+          username: ${{ secrets.DOCKER_USR }}
+          password: ${{ secrets.DOCKER_PSW }}
+      - name: Set tag
+        run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
+        id: tagger
+      - name: Build
+        uses: crossplane-contrib/xpkg-action@v0.1.0
+        with:
+          command: build configuration -f nested --name=xpkg-action-test
+      - name: Push
+        uses: crossplane-contrib/xpkg-action@v0.1.0
+        with:
+          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test-2:${{ steps.tagger.outputs.VERSION_TAG }}
+      - name: Push Latest
+        uses: crossplane-contrib/xpkg-action@v0.1.0
+        with:
+          command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test-2
