@@ -29,17 +29,17 @@ jobs:
         run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
         id: tagger
       - name: Build
-        uses: crossplane-contrib/xpkg-action@v0.1.0
+        uses: crossplane-contrib/xpkg-action@master
         with:
           channel: master
           version: current
           command: build configuration -f nested --name=xpkg-action-test
       - name: Push
-        uses: crossplane-contrib/xpkg-action@v0.1.0
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test:${{ steps.tagger.outputs.VERSION_TAG }}
       - name: Push Latest
-        uses: crossplane-contrib/xpkg-action@v0.1.0
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test
   test2:
@@ -61,14 +61,14 @@ jobs:
         run: echo "::set-output name=VERSION_TAG::$(git describe --dirty --always --tags | sed 's/-/./2' | sed 's/-/./2' )"
         id: tagger
       - name: Build
-        uses: crossplane-contrib/xpkg-action@v0.1.0
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: build configuration -f nested --name=xpkg-action-test
       - name: Push
-        uses: crossplane-contrib/xpkg-action@v0.1.0
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test-2:${{ steps.tagger.outputs.VERSION_TAG }}
       - name: Push Latest
-        uses: crossplane-contrib/xpkg-action@v0.1.0
+        uses: crossplane-contrib/xpkg-action@master
         with:
           command: push configuration -f nested/xpkg-action-test.xpkg registry.upbound.io/crossplane-test/xpkg-action-test-2
