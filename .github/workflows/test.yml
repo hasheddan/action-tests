@@ -40,8 +40,8 @@ jobs:
       - name: Build
         uses: crossplane-contrib/xpkg-action@master
         with:
-          channel: ${{ inputs.channel }}
-          version: ${{ inputs.version }}
+          channel: ${{ github.event.inputs.channel }}
+          version: ${{ github.event.inputs.version }}
           command: build configuration -f nested --name=xpkg-action-test
       - name: Push
         uses: crossplane-contrib/xpkg-action@master
